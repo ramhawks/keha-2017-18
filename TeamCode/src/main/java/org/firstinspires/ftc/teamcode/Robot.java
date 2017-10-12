@@ -37,7 +37,7 @@ public class Robot
     private ElapsedTime period  = new ElapsedTime();
 
     /* Constructor */
-    public Robot(){
+    public Robot(HardwareMap hardwareMap){
 
     }
 
@@ -53,6 +53,7 @@ public class Robot
         clawLift = hwMap.get(DcMotor.class, "clawLift");
         leftDrive.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
         rightDrive.setDirection(DcMotor.Direction.REVERSE);// Set to FORWARD if using AndyMark motors
+        centerDrive.setDirection(DcMotor.Direction.FORWARD);// Set to FORWARD if using AndyMark motors
 
         // Set all motors to zero power
         leftDrive.setPower(0);

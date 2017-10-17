@@ -1,9 +1,12 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
+
+import static android.os.SystemClock.sleep;
 
 /**
  * This is NOT an opmode.
@@ -37,7 +40,7 @@ public class Robot
     private ElapsedTime period  = new ElapsedTime();
 
     /* Constructor */
-    public Robot(HardwareMap hardwareMap){
+    public Robot(){
 
     }
 
@@ -50,7 +53,7 @@ public class Robot
         leftDrive  = hwMap.get(DcMotor.class, "leftDrive");
         rightDrive = hwMap.get(DcMotor.class, "rightDrive");
         centerDrive = hwMap.get(DcMotor.class, "centerDrive");
-        clawLift = hwMap.get(DcMotor.class, "clawLift");
+        //clawLift = hwMap.get(DcMotor.class, "clawLift");
         leftDrive.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
         rightDrive.setDirection(DcMotor.Direction.REVERSE);// Set to FORWARD if using AndyMark motors
         centerDrive.setDirection(DcMotor.Direction.FORWARD);// Set to FORWARD if using AndyMark motors
@@ -58,16 +61,21 @@ public class Robot
         // Set all motors to zero power
         leftDrive.setPower(0);
         rightDrive.setPower(0);
+        centerDrive.setPower(0);
 
         // Set all motors to run without encoders.
         // May want to use RUN_USING_ENCODERS if encoders are installed.
-        leftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        leftDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        rightDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        centerDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         // Define and initialize ALL installed servos.
-        leftClaw  = hwMap.get(Servo.class, "leftClaw");
-        rightClaw = hwMap.get(Servo.class, "rightClaw");
-        leftClaw.setPosition(MID_SERVO);
-        rightClaw.setPosition(MID_SERVO);
+        //leftClaw  = hwMap.get(Servo.class, "leftClaw");
+        //rightClaw = hwMap.get(Servo.class, "rightClaw");
+        //leftClaw.setPosition(MID_SERVO);
+        //rightClaw.setPosition(MID_SERVO);
+
+        //telemetry.
+        sleep(50);
     }
 }

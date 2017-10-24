@@ -275,11 +275,11 @@ public class ConceptVuforiaNavigation extends LinearOpMode {
          * L = redTargetLocationOnField maps   image target coords -> field coords
          *
          * So
-         *
-         * C.inverted()              maps   robot coords -> phone coords
+         *ds
          * P.inverted()              maps   phone coords -> imageTarget coords
          *
          * Putting that all together,
+         * C.inverted()              maps   robot coords -> phone coor
          *
          * L x P.inverted() x C.inverted() maps robot coords to field coords.
          *

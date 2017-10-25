@@ -29,6 +29,15 @@ public class KehaDrive extends LinearOpMode {
         double leftTrigger;
         double rightTrigger;
 
+        //Claw Servo variables
+        double leftOpen;
+        double rightOpen;
+        double leftClose;
+        double rightClose;
+
+
+
+
         int bothNotZero = 0;
         // Robot Controller's layout
         //final View relativeLayout = ((Activity) keha.hardware.hwMap.appContext).findViewById(R.id.RelativeLayout);
@@ -67,6 +76,19 @@ public class KehaDrive extends LinearOpMode {
                 keha.centerDrive.setPower(leftTrigger + rightTrigger);
                 bothNotZero = 0;
             }
+
+
+
+            /*Claw code*/
+
+            /*if(gamepad1.x){
+                keha.leftClaw.setPosition(leftOpen);
+                keha.rightClaw.setPosition(rightOpen);
+            }
+            if(gamepad1.b){
+                keha.leftClaw.setPosition(leftClose);
+                keha.rightClaw.setPosition(rightClose);
+            }*/
 
             /*show joystick values*/
             telemetry.addData("Left Vertical", gamepad1.left_stick_y);

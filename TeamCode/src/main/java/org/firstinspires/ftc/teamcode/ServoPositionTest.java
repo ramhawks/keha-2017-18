@@ -39,20 +39,19 @@ public class ServoPositionTest extends LinearOpMode {
             notPressed = true;
 
             //while(gamepad1.left_bumper){
-                if(gamepad1.start){
+                /*if(gamepad1.start){
                     keha.leftClaw.setPosition(Servo.MAX_POSITION);
                     lastPosL = 1;
-                }
+                }else if(gamepad1.back){
+                telemetry.addLine("backStatement");
+                keha.leftClaw.setPosition(Servo.MIN_POSITION);
+                lastPosL = 0;
+                }*/
                 /*if (gamepad1.guide){
                     keha.leftClaw.setPosition(.5);
                     lastPosL = .5;
                 }*/
-                if (gamepad1.back){
-                    telemetry.addLine("backStatement");
-                    keha.leftClaw.setPosition(Servo.MIN_POSITION);
-                    lastPosL = 0;
 
-                }
                 if(gamepad1.b && notPressed && lastPosL <= .95){
                     keha.leftClaw.setPosition(lastPosL + .05);
                     lastPosL += .05;
@@ -65,6 +64,19 @@ public class ServoPositionTest extends LinearOpMode {
                     notPressed = false;
                     sleep(500);
                 }
+
+            if(gamepad1.dpad_right && notPressed && lastPosL <= .95){
+                keha.rightClaw.setPosition(lastPosL + .05);
+                lastPosR += .05;
+                notPressed = false;
+                sleep(500);
+            }
+            if (gamepad1.dpad_left && notPressed && lastPosL >= .05){
+                keha.rightClaw.setPosition(lastPosL - .05);
+                lastPosR -= .05;
+                notPressed = false;
+                sleep(500);
+            }
             //}
 
             /*while(gamepad1.right_bumper){

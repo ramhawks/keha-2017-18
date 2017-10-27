@@ -5,6 +5,7 @@ import android.view.View;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DeviceInterfaceModule;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.Hardware;
 
@@ -30,10 +31,11 @@ public class KehaDrive extends LinearOpMode {
         double rightTrigger;
 
         //Claw Servo variables
-        double leftOpen;
-        double rightOpen;
-        double leftClose;
-        double rightClose;
+        double leftOpen = 0;
+        double rightOpen = 1;
+        double leftClose = .7;
+        double rightClose = .25;
+        //int switch =
 
 
 
@@ -64,9 +66,9 @@ public class KehaDrive extends LinearOpMode {
             keha.leftDrive.setPower(-gamepad1.left_stick_y);
             keha.rightDrive.setPower(-gamepad1.right_stick_y);
 
-            if (gamepad1.a){
+            /*if (gamepad1.a){
                 keha.centerDrive.setPower(1);
-            }
+            }*/
             //sleep(2000);
 
             if (leftTrigger != 0 && rightTrigger != 0){
@@ -81,14 +83,23 @@ public class KehaDrive extends LinearOpMode {
 
             /*Claw code*/
 
-            /*if(gamepad1.x){
+            if(gamepad1.x){
                 keha.leftClaw.setPosition(leftOpen);
                 keha.rightClaw.setPosition(rightOpen);
             }
             if(gamepad1.b){
                 keha.leftClaw.setPosition(leftClose);
                 keha.rightClaw.setPosition(rightClose);
-            }*/
+            }
+
+            //claw lift
+            if (gamepad1.y){
+                keha.clawLift.setPower(.5);
+            } else if (gamepad1.a){
+                keha.clawLift.setPower(-.5);
+            }else{
+                keha.clawLift.setPower(0);
+            }
 
             /*show joystick values*/
             telemetry.addData("Left Vertical", gamepad1.left_stick_y);
@@ -96,6 +107,7 @@ public class KehaDrive extends LinearOpMode {
             telemetry.addData("Right Vertical", gamepad1.right_stick_y);
             telemetry.addData("Right Horizontal", gamepad1.right_stick_x);
             telemetry.addData("Both Not Zero", bothNotZero);
+            //telemetry.addData("Switch", DeviceInterfaceModule.getDigital)
 
             telemetry.update();
 

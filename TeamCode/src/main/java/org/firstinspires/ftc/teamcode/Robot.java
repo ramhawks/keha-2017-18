@@ -33,6 +33,8 @@ public class Robot
     public Servo    leftClaw    = null;
     public Servo    rightClaw   = null;
 
+
+
     public static final double MID_SERVO       =  0.5 ;
 
     /* local OpMode members. */
@@ -53,7 +55,7 @@ public class Robot
         leftDrive  = hwMap.get(DcMotor.class, "leftDrive");
         rightDrive = hwMap.get(DcMotor.class, "rightDrive");
         centerDrive = hwMap.get(DcMotor.class, "centerDrive");
-        //clawLift = hwMap.get(DcMotor.class, "clawLift");
+        clawLift = hwMap.get(DcMotor.class, "clawLift");
         leftDrive.setDirection(DcMotor.Direction.REVERSE); // Set to REVERSE if using AndyMark motors
         rightDrive.setDirection(DcMotor.Direction.FORWARD);// Set to FORWARD if using AndyMark motors
         centerDrive.setDirection(DcMotor.Direction.FORWARD);// Set to FORWARD if using AndyMark motors
@@ -62,20 +64,20 @@ public class Robot
         leftDrive.setPower(0);
         rightDrive.setPower(0);
         centerDrive.setPower(0);
-        //clawLift.setPower(0);
+        clawLift.setPower(0);
 
         // Set all motors to run without encoders.
         // May want to use RUN_USING_ENCODERS if encoders are installed.
         leftDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);     //use with encoders once installed
         rightDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);    //use with encoders when installed
         centerDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        //clawLift.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        clawLift.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         // Define and initialize ALL installed servos.
         leftClaw  = hwMap.get(Servo.class, "leftClaw");
         rightClaw = hwMap.get(Servo.class, "rightClaw");
-        leftClaw.setPosition(MID_SERVO);
-        rightClaw.setPosition(MID_SERVO);
+        leftClaw.setPosition(Servo.MIN_POSITION);
+        rightClaw.setPosition(Servo.MAX_POSITION);
 
 
         sleep(50);

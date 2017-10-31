@@ -2,8 +2,11 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.DeviceInterfaceModule;
+import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.TouchSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import static android.os.SystemClock.sleep;
@@ -26,14 +29,16 @@ import static android.os.SystemClock.sleep;
 public class Robot
 {
     /* Public OpMode members. */
-    public DcMotor  leftDrive   = null;
-    public DcMotor  rightDrive  = null;
-    public DcMotor  centerDrive = null;
-    public DcMotor  clawLift    = null;
-    public Servo    leftClaw    = null;
-    public Servo    rightClaw   = null;
+    public DcMotor                  leftDrive   = null;
+    public DcMotor                  rightDrive  = null;
+    public DcMotor                  centerDrive = null;
+    public DcMotor                  clawLift    = null;
+    public Servo                    leftClaw    = null;
+    public Servo                    rightClaw   = null;
 
 
+    public TouchSensor limitSwitchDown;
+    public TouchSensor limitSwitchUp;
 
     public static final double MID_SERVO       =  0.5 ;
 
@@ -59,6 +64,9 @@ public class Robot
         leftDrive.setDirection(DcMotor.Direction.REVERSE); // Set to REVERSE if using AndyMark motors
         rightDrive.setDirection(DcMotor.Direction.FORWARD);// Set to FORWARD if using AndyMark motors
         centerDrive.setDirection(DcMotor.Direction.FORWARD);// Set to FORWARD if using AndyMark motors
+
+        limitSwitchDown = hwMap.touchSensor.get("limitSwitchDown");
+        limitSwitchUp = hwMap.touchSensor.get("limitSwitchUp");
 
         // Set all motors to zero power
         leftDrive.setPower(0);

@@ -35,7 +35,9 @@ public class KehaDrive extends LinearOpMode {
         double rightOpen = 1;
         double leftClose = .7;
         double rightClose = .25;
-        //int switch =
+        boolean limitSwitchUp;
+        boolean limitSwitchDown;
+
 
 
 
@@ -52,6 +54,10 @@ public class KehaDrive extends LinearOpMode {
         //boolean enableCenter = false;
 
         while (opModeIsActive()){
+
+
+            limitSwitchDown = keha.limitSwitchDown.isPressed();
+            limitSwitchUp = keha.limitSwitchUp.isPressed();
 
             leftTrigger = -gamepad1.left_trigger;
             rightTrigger = gamepad1.right_trigger;
@@ -93,9 +99,9 @@ public class KehaDrive extends LinearOpMode {
             }
 
             //claw lift
-            if (gamepad1.y){
+            if (gamepad1.y  && !limitSwitchUp){
                 keha.clawLift.setPower(.5);
-            } else if (gamepad1.a){
+            } else if (gamepad1.a && !limitSwitchDown){
                 keha.clawLift.setPower(-.5);
             }else{
                 keha.clawLift.setPower(0);
@@ -107,7 +113,8 @@ public class KehaDrive extends LinearOpMode {
             telemetry.addData("Right Vertical", gamepad1.right_stick_y);
             telemetry.addData("Right Horizontal", gamepad1.right_stick_x);
             telemetry.addData("Both Not Zero", bothNotZero);
-            //telemetry.addData("Switch", DeviceInterfaceModule.getDigital)
+            telemetry.addData("Switch down", limitSwitchDown);
+            telemetry.addData("Other Switch up", limitSwitchUp);
 
             telemetry.update();
 

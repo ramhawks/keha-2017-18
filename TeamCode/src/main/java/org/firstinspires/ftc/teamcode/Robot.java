@@ -76,8 +76,8 @@ public class Robot
 
         // Set all motors to run without encoders.
         // May want to use RUN_USING_ENCODERS if encoders are installed.
-        leftDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);     //use with encoders once installed
-        rightDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);    //use with encoders when installed
+        leftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);     //use with encoders once installed
+        rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);    //use with encoders when installed
         centerDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         clawLift.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 

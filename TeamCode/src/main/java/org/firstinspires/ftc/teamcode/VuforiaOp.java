@@ -15,7 +15,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 /**
  * Created by Team3090 on 10/24/2017.
  */
-@TeleOp(name = "VuforiaTest", group = "Test")
+//@TeleOp(name = "VuforiaTest", group = "Test")
 public class VuforiaOp extends LinearOpMode {
 
     VuforiaLocalizer vuforia;

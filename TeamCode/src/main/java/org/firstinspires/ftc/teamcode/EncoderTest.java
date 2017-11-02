@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
 
 /**
  * Created by Team3090 on 10/31/2017.
@@ -13,6 +14,9 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 public class EncoderTest extends LinearOpMode{
 
     Robot keha = new Robot();
+
+
+
     @Override
     public void runOpMode(){
         keha.init(hardwareMap);
@@ -21,18 +25,22 @@ public class EncoderTest extends LinearOpMode{
         int leftEnc;
         int rightEnc;
 
+        keha.rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        keha.leftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        while(keha.leftDrive.getCurrentPosition() > -550 && keha.rightDrive.getCurrentPosition() > -550){
-            keha.rightDrive.setPower(-.5);
-            keha.leftDrive.setPower(-.5);
-            telemetry.addData("left", keha.leftDrive.getCurrentPosition());
-            telemetry.addData("right", keha.rightDrive.getCurrentPosition());
-            telemetry.update();
-        }
+        keha.rightDrive.setTargetPosition(-550);
+        keha.leftDrive.setTargetPosition(-550);
 
-        keha.leftDrive.setPower(0);
-        keha.rightDrive.setPower(0);
-        sleep(3000);
+        keha.rightDrive.setPower(-.25);
+        keha.leftDrive.setPower(-.25);
+
+
+        telemetry.addData("left", keha.leftDrive.getCurrentPosition());
+        telemetry.addData("right", keha.rightDrive.getCurrentPosition());
+        telemetry.update();
+        /*keha.leftDrive.setPower(0);
+        keha.rightDrive.setPower(0);*/
+        sleep(5000);
         telemetry.addLine("end");
         telemetry.update();
 

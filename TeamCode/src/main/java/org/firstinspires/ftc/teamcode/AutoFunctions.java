@@ -18,11 +18,15 @@ import static java.lang.Thread.sleep;
 public class AutoFunctions {
     Robot keha = new Robot();
 
+
+
     public ElapsedTime timer = new ElapsedTime();
 
+    //public Robot keha;
 
 
     //direction must be set to 1 if left, -1 if right
+
     public void sideToSide(int direction, double distance){
 
         int position = (int) (Math.round(distance * 43.82 * direction));
@@ -59,6 +63,7 @@ public class AutoFunctions {
 
     // true for open, false for close
     public void claw(boolean openTrue){
+
         double leftOpen = 0;
         double rightOpen = 1;
         double leftClose = .7;

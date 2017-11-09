@@ -18,6 +18,9 @@ import static java.lang.Thread.sleep;
 public class AutoFunctions {
     Robot keha = new Robot();
 
+    /**
+     * Do not use this class, auto functions are in Robot class
+     */
 
 
     public ElapsedTime timer = new ElapsedTime();

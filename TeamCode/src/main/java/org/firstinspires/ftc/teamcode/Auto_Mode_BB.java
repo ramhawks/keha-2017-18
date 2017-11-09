@@ -10,21 +10,16 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 
 /**
- * Created by Team3090 on 11/2/2017.
- *
- *
- * Autonomous mode Audience Red
- * */
-@Autonomous(name = "AR", group = "Autonomous")
-public class Auto_Mode_AR extends LinearOpMode{
-    //AutoFunctions auto = new AutoFunctions();
+ * Created by Team3090 on 11/8/2017.
+ */
+@Autonomous(name = "Auto_Mode_BB", group = "Autonomous")
+public class Auto_Mode_BB extends LinearOpMode{
     Robot keha = new Robot();
     VuforiaLocalizer vuforia;
+
     @Override
     public void runOpMode(){
         keha.init(hardwareMap);
-
-        //boolean openTrue = false;
 
         /*Vuforia Setup/Init*/
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
@@ -48,9 +43,6 @@ public class Auto_Mode_AR extends LinearOpMode{
         waitForStart();
         relicTrackables.activate();
 
-
-        //Steps of auto mode
-
         //1
         keha.claw(false);
         sleep(1000);
@@ -60,10 +52,6 @@ public class Auto_Mode_AR extends LinearOpMode{
         sleep(1000);
         telemetry.addLine("Step 1 done");
         telemetry.update();
-
-        keha.mainDrive(1, 3);
-        sleep(1000);
-        keha.stopMain();
 
         //2
         RelicRecoveryVuMark vuMark;
@@ -76,39 +64,36 @@ public class Auto_Mode_AR extends LinearOpMode{
 
         sleep(1000);
 
-        keha.turn90(-1);
-        sleep(2000);
-        keha.stopMain();
-
-        keha.mainDrive(1, 20);
-        sleep(2000);
-        keha.stopMain();
-
-        keha.turn90(1);
-        sleep(2000);
-        keha.stopMain();
-
-
-
         telemetry.addLine("step 2 done");
         telemetry.update();
+
         //3
+        keha.sideToSide(1, 27.5);
+        sleep(3000);
+
+        //4
+        keha.turn90(1);
+        sleep(3000);
+        keha.stopMain();
+        sleep(1000);
+
+        //5
         if(vuMark == RelicRecoveryVuMark.RIGHT){
-            //params 1 for left direction, 29 for distance
-            keha.sideToSide(1, 9);
-            sleep(3000);
+            //params -1 for right direction, 19 for distance
+            keha.sideToSide(-1, 19);
+            sleep(5000);
             //stop motors
             keha.stopCenter();
         }else if (vuMark == RelicRecoveryVuMark.CENTER){
-            //params 1 for left direction, 36.5 for distance
-            keha.sideToSide(1, 16.5);
-            sleep(3000);
+            //params -1 for right direction, 12 for distance
+            keha.sideToSide(-1, 12);
+            sleep(5000);
             //stop motors
             keha.stopCenter();
         }else if (vuMark == RelicRecoveryVuMark.LEFT){
-            //params 1 for left direction, 45.5 for distance
-            keha.sideToSide(1, 25.5);
-            sleep(3000);
+            //params -1 for right direction, 3.75 for distance
+            keha.sideToSide(-1, 3.75);
+            sleep(5000);
             //stop motors
             keha.stopCenter();
         }else {
@@ -116,26 +101,21 @@ public class Auto_Mode_AR extends LinearOpMode{
         }
         sleep(1000);
 
-        //4
-        //params 1 for forward, 5 for distance
-        keha.mainDrive(1, 5);
+        //6
+        keha.mainDrive(1, 2);
         sleep(3000);
         keha.stopMain();
         sleep(1000);
 
-        //5
-        //true for open
+        //7
+        // true for open
         keha.claw(true);
         sleep(1000);
 
-        //6
-        //params -1 for backward, 5 for distance
-        keha.mainDrive(-1, 5);
+        //8
+        keha.mainDrive(-1, 2);
         sleep(3000);
         keha.stopMain();
         sleep(1000);
-
-
-
     }
 }

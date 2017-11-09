@@ -15,8 +15,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
  *
  * Autonomous mode Audience Red
  * */
-@Autonomous(name = "AR", group = "Autonomous")
-public class Auto_Mode_AR extends LinearOpMode{
+@Autonomous(name = "AB", group = "Autonomous")
+public class Auto_Mode_AB extends LinearOpMode{
     //AutoFunctions auto = new AutoFunctions();
     Robot keha = new Robot();
     VuforiaLocalizer vuforia;
@@ -61,10 +61,6 @@ public class Auto_Mode_AR extends LinearOpMode{
         telemetry.addLine("Step 1 done");
         telemetry.update();
 
-        keha.mainDrive(1, 3);
-        sleep(1000);
-        keha.stopMain();
-
         //2
         RelicRecoveryVuMark vuMark;
 
@@ -76,39 +72,25 @@ public class Auto_Mode_AR extends LinearOpMode{
 
         sleep(1000);
 
-        keha.turn90(-1);
-        sleep(2000);
-        keha.stopMain();
-
-        keha.mainDrive(1, 20);
-        sleep(2000);
-        keha.stopMain();
-
-        keha.turn90(1);
-        sleep(2000);
-        keha.stopMain();
-
-
-
         telemetry.addLine("step 2 done");
         telemetry.update();
         //3
         if(vuMark == RelicRecoveryVuMark.RIGHT){
-            //params 1 for left direction, 29 for distance
-            keha.sideToSide(1, 9);
-            sleep(3000);
+            //params -1 for right direction, 45.5 for distance
+            keha.sideToSide(-1, 45.5);
+            sleep(5000);
             //stop motors
             keha.stopCenter();
         }else if (vuMark == RelicRecoveryVuMark.CENTER){
-            //params 1 for left direction, 36.5 for distance
-            keha.sideToSide(1, 16.5);
-            sleep(3000);
+            //params -1 for right direction, 36.5 for distance
+            keha.sideToSide(-1, 36.5);
+            sleep(5000);
             //stop motors
             keha.stopCenter();
         }else if (vuMark == RelicRecoveryVuMark.LEFT){
-            //params 1 for left direction, 45.5 for distance
-            keha.sideToSide(1, 25.5);
-            sleep(3000);
+            //params -1 for right direction, 29 for distance
+            keha.sideToSide(-1, 29);
+            sleep(5000);
             //stop motors
             keha.stopCenter();
         }else {

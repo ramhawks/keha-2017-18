@@ -64,6 +64,7 @@ public class Robot
         leftDrive.setDirection(DcMotor.Direction.REVERSE); // Set to REVERSE if using AndyMark motors
         rightDrive.setDirection(DcMotor.Direction.FORWARD);// Set to FORWARD if using AndyMark motors
         centerDrive.setDirection(DcMotor.Direction.FORWARD);// Set to FORWARD if using AndyMark motors
+        clawLift.setDirection(DcMotor.Direction.FORWARD);
 
         limitSwitchDown = hwMap.touchSensor.get("limitSwitchDown");
         limitSwitchUp = hwMap.touchSensor.get("limitSwitchUp");
@@ -90,4 +91,80 @@ public class Robot
 
         sleep(50);
     }
+
+    //direction must be set to 1 if left, -1 if right
+    public void sideToSide(int direction, double distance){
+
+        int position = (int) (Math.round(distance * 43.82 * direction));
+        centerDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        centerDrive.setTargetPosition(position);
+        centerDrive.setPower(.5 * direction);
+    }
+
+    public void stopCenter(){
+        centerDrive.setPower(0);
+        centerDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        centerDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+    }
+
+    //forward = 1, backwards = -1
+    public void mainDrive(int direction, double distance){
+        int position = (int) (Math.round(distance * 62.15 * -direction));
+        leftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        leftDrive.setTargetPosition(position);
+        rightDrive.setTargetPosition(position);
+        leftDrive.setPower(.25 * -direction);
+        rightDrive.setPower(.25 * -direction);
+    }
+
+    public void stopMain(){
+        leftDrive.setPower(0);
+        rightDrive.setPower(0);
+        leftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        rightDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+    }
+
+    // true for open, false for close
+    public void claw(boolean openTrue){
+
+        double leftOpen = 0;
+        double rightOpen = 1;
+        double leftClose = .7;
+        double rightClose = .25;
+        if (openTrue){
+            leftClaw.setPosition(leftOpen);
+            rightClaw.setPosition(rightOpen);
+        }else{
+            leftClaw.setPosition(leftClose);
+            rightClaw.setPosition(rightClose);
+        }
+    }
+
+    public void clawUp(){
+        clawLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        clawLift.setTargetPosition(1100);
+        clawLift.setPower(.25);
+
+    }
+
+    public void clawStop(){
+        clawLift.setPower(0);
+        clawLift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        clawLift.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+    }
+
+    //chirality 1 if clockwise
+    public void turn90(int chirality){
+        int position = (int) (Math.round(12.5 * 62.15 * -chirality));
+        leftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        leftDrive.setTargetPosition(position);
+        rightDrive.setTargetPosition(-position);
+        leftDrive.setPower(.25 * -chirality);
+        rightDrive.setPower(.25 * chirality);
+    }
+
 }

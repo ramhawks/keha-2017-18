@@ -77,8 +77,8 @@ public class Robot
 
         // Set all motors to run without encoders.
         // May want to use RUN_USING_ENCODERS if encoders are installed.
-        leftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);     //use with encoders once installed
-        rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);    //use with encoders when installed
+        leftDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);     //use with encoders once installed
+        rightDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);    //use with encoders when installed
         centerDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         clawLift.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
@@ -98,7 +98,7 @@ public class Robot
         int position = (int) (Math.round(distance * 43.82 * direction));
         centerDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         centerDrive.setTargetPosition(position);
-        centerDrive.setPower(.5 * direction);
+        centerDrive.setPower(.25 * direction);
     }
 
     public void stopCenter(){

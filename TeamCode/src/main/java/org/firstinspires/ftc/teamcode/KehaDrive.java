@@ -69,8 +69,8 @@ public class KehaDrive extends LinearOpMode {
             }*/
 
             /*Drive code*/
-            keha.leftDrive.setPower(-gamepad1.left_stick_y);
-            keha.rightDrive.setPower(-gamepad1.right_stick_y);
+            keha.leftDrive.setPower(gamepad1.left_stick_y);
+            keha.rightDrive.setPower(gamepad1.right_stick_y);
 
             /*if (gamepad1.a){
                 keha.centerDrive.setPower(1);

@@ -59,14 +59,14 @@ public class Auto_Mode_AR extends LinearOpMode{
         keha.clawUp();
         sleep(2000);
         keha.clawStop();
-        sleep(1000);
+        //sleep(1000);
         telemetry.addLine("Step 1 done");
         telemetry.update();
 
 
         keha.mainDrive(-1, 2);
         //keha.sideToSide(1, .25);
-        sleep(3000);
+        sleep(2000);
         keha.stopMain();
         //keha.stopCenter();
         //sleep(1000);
@@ -103,51 +103,60 @@ public class Auto_Mode_AR extends LinearOpMode{
         //3
         if(vuMark == RelicRecoveryVuMark.RIGHT){
             //params 1 for left direction, 29 for distance
-            keha.mainDrive(-1, 140);
-            sleep(3000);
+            keha.mainDrive(-1, 31);
+            sleep(6000);
             //stop motors
             keha.stopMain();
         }else if (vuMark == RelicRecoveryVuMark.CENTER){
             //params 1 for left direction, 36.5 for distance
-            keha.mainDrive(-1, 153);
-            sleep(3000);
+            keha.mainDrive(-1, 36.5);
+            sleep(6000);
             //stop motors
             keha.stopMain();
         }else if (vuMark == RelicRecoveryVuMark.LEFT){
             //params 1 for left direction, 45.5 for distance
-            keha.mainDrive(-1, 171);
-            sleep(3000);
+            keha.mainDrive(-1, 42);
+            sleep(6000);
             //stop motors
             keha.stopMain();
         }else {
             telemetry.addLine("vuMark Unknown");
             //keha.sideToSide(1, 9);
-            keha.mainDrive(-1, 39);
-            sleep(3000);
+            keha.mainDrive(-1, 31);
+            sleep(5000);
             //stop motors
             keha.stopMain();
             sleep(2000);
             //stop motors
             //keha.stopCenter();
         }
-        sleep(1000);
+        //sleep(1000);
 
         /*keha.sideToSide(-1, 4);
         sleep(1000);
         keha.stopCenter();*/
 
-        keha.turn90(-1);
-        sleep(2000);
+
+
+        keha.turn90(1);
+        sleep(4000);
         keha.stopMain();
 
+        keha.mainDrive(1, 6);
+        sleep(1000);
+        keha.stopMain();
+
+        keha.turn90(2);
+        sleep(5000);
+        keha.stopMain();
 
 
         //4
         //params 1 for forward, 5 for distance
-        keha.mainDrive(1, 12);
-        sleep(1000);
+        keha.mainDrive(1, 8);
+        sleep(2000);
         keha.stopMain();
-        sleep(1000);
+        //sleep(1000);
 
         //5
         //true for open
@@ -159,7 +168,7 @@ public class Auto_Mode_AR extends LinearOpMode{
         keha.mainDrive(-1, 2);
         sleep(1000);
         keha.stopMain();
-        sleep(1000);
+        //sleep(1000);
 
 
 

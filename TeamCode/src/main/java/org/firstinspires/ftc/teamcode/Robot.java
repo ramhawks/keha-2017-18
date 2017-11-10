@@ -157,8 +157,8 @@ public class Robot
     }
 
     //chirality 1 if clockwise
-    public void turn90(int chirality){
-        int position = (int) (Math.round(12.5 * 62.15 * -chirality));
+    public void turn90(double chirality){
+        int position = (int) (Math.round(13.5 * 62.15 * -chirality));
         leftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         leftDrive.setTargetPosition(position);

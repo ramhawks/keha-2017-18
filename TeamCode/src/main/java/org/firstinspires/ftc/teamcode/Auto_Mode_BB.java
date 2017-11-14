@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.navigation.RelicRecoveryVuMark;
@@ -16,6 +17,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 public class Auto_Mode_BB extends LinearOpMode{
     Robot keha = new Robot();
     VuforiaLocalizer vuforia;
+    ElapsedTime timer = new ElapsedTime();
 
     @Override
     public void runOpMode(){
@@ -26,7 +28,7 @@ public class Auto_Mode_BB extends LinearOpMode{
         VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters(cameraMonitorViewId);
 
         //Which Camera on phone to use
-        parameters.cameraDirection = VuforiaLocalizer.CameraDirection.FRONT;
+        //parameters.cameraDirection = VuforiaLocalizer.CameraDirection.FRONT;
 
         //Vuforia License Key
         parameters.vuforiaLicenseKey = "AaIKqd//////AAAAGX1rH3Omc0eYrYaOBLRbihtjvVsoSIYMPJJcDQU5qALMkXIObE8ElwsW2MUCUQjT0WfEkmvoAz+cOKI3bkbxG0PjwBkKMvW9vgJJgELOXJcxGuDPAMQ2uAbzPtDZxzK4+VFE0i7L7DlB7nSVTlGfbnxtnAgyPTLq6sOVw+SWfjgiKzNiwwLKeLGRYDci/QckajIII2St0OQFQaQUAKiXrqbh4IV9FOx59NhH21mlhUfA2zKF1k962unBsPIyO6sjBsL6ric13F5hMkKtoaMc/Q+HDlzID5y36WH9bQbS7o08z6w4aTD9z7OXZxQ5E/8bCaNe0slWhi4/dDBCZNxHWExwmeCYrgSzNpJ6Bww26pCX" ;
@@ -47,66 +49,93 @@ public class Auto_Mode_BB extends LinearOpMode{
         keha.claw(false);
         sleep(1000);
         keha.clawUp();
-        sleep(2000);
-        keha.clawStop();
         sleep(1000);
+        keha.clawStop();
+        //sleep(1000);
         telemetry.addLine("Step 1 done");
         telemetry.update();
+
+
+        //keha.mainDrive(-1, 2);
+        //keha.sideToSide(1, .25);
+        //sleep(2000);
+        //keha.stopMain();
+        //keha.stopCenter();
+        //sleep(1000);
+
+        timer.reset();
 
         //2
         RelicRecoveryVuMark vuMark;
 
-        do {
+        /*do {
             vuMark = RelicRecoveryVuMark.from(cryptoKey);
             telemetry.addData("VuMark", vuMark);
             telemetry.update();
-        }while (vuMark == RelicRecoveryVuMark.UNKNOWN && opModeIsActive());
+        }while (vuMark == RelicRecoveryVuMark.UNKNOWN && opModeIsActive() && timer.milliseconds() < 3000);*/
 
-        sleep(1000);
-
+        //sleep(1000);
+        //telemetry.addData("vumark", vuMark);
         telemetry.addLine("step 2 done");
         telemetry.update();
 
         //3
-        keha.sideToSide(1, 27.5);
+
+
+        keha.mainDrive(1, 20);
         sleep(3000);
+        keha.stopMain();
 
         //4
         keha.turn90(1);
         sleep(3000);
         keha.stopMain();
-        sleep(1000);
+        //sleep(1000);
 
         //5
-        if(vuMark == RelicRecoveryVuMark.RIGHT){
-            //params -1 for right direction, 19 for distance
-            keha.sideToSide(-1, 19);
-            sleep(5000);
+        /*if(vuMark == RelicRecoveryVuMark.RIGHT){
+            //params 1 for left direction, 3.75 for distance
+            keha.mainDrive(1, 3);
+            sleep(6000);
             //stop motors
-            keha.stopCenter();
+            keha.stopMain();
         }else if (vuMark == RelicRecoveryVuMark.CENTER){
-            //params -1 for right direction, 12 for distance
-            keha.sideToSide(-1, 12);
-            sleep(5000);
+            //params 1 for left direction, 12 for distance
+            keha.mainDrive(1, 11);
+            sleep(6000);
             //stop motors
-            keha.stopCenter();
+            keha.stopMain();
         }else if (vuMark == RelicRecoveryVuMark.LEFT){
-            //params -1 for right direction, 3.75 for distance
-            keha.sideToSide(-1, 3.75);
-            sleep(5000);
+            //params 1 for left direction, 19 for distance
+            keha.mainDrive(1, 18);
+            sleep(6000);
             //stop motors
             keha.stopCenter();
-        }else {
-            telemetry.addLine("vuMark Unknown");
-        }
-        sleep(1000);
+        }else {*/
+        telemetry.addLine("vuMark Unknown");
+        keha.mainDrive(1, 6);
+        sleep(4000);
+        //stop motors
+        keha.stopMain();
+        //}
+        //sleep(1000);
 
+        keha.turn90(1);
+        sleep(2000);
+        keha.stopMain();
         //6
-        keha.mainDrive(1, 2);
+        keha.mainDrive(1, 6);
         sleep(3000);
         keha.stopMain();
-        sleep(1000);
+        //sleep(1000);
 
+        keha.turn90(-2);
+        sleep(4000);
+        keha.stopMain();
+
+        keha.mainDrive(1, 6);
+        sleep(3000);
+        keha.stopMain();
         //7
         // true for open
         keha.claw(true);
@@ -114,8 +143,8 @@ public class Auto_Mode_BB extends LinearOpMode{
 
         //8
         keha.mainDrive(-1, 2);
-        sleep(3000);
+        sleep(2000);
         keha.stopMain();
-        sleep(1000);
+        //sleep(1000);
     }
 }

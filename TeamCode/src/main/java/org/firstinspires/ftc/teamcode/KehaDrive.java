@@ -59,8 +59,8 @@ public class KehaDrive extends LinearOpMode {
             limitSwitchDown = keha.limitSwitchDown.isPressed();
             limitSwitchUp = keha.limitSwitchUp.isPressed();
 
-            leftTrigger = -gamepad1.left_trigger;
-            rightTrigger = gamepad1.right_trigger;
+            leftTrigger = gamepad1.left_trigger;
+            rightTrigger = -gamepad1.right_trigger;
 
             /*max = Math.max(Math.abs(leftTrigger), Math.abs(rightTrigger));
             if (max > 1.0) {
@@ -89,20 +89,20 @@ public class KehaDrive extends LinearOpMode {
 
             /*Claw code*/
 
-            if(gamepad1.x){
+            if(gamepad1.x || gamepad2.x){
                 keha.leftClaw.setPosition(leftOpen);
                 keha.rightClaw.setPosition(rightOpen);
             }
-            if(gamepad1.b){
+            if(gamepad1.b || gamepad2.b){
                 keha.leftClaw.setPosition(leftClose);
                 keha.rightClaw.setPosition(rightClose);
             }
 
             //claw lift
-            if (gamepad1.y  && !limitSwitchUp){
-                keha.clawLift.setPower(.5);
-            } else if (gamepad1.a && !limitSwitchDown){
-                keha.clawLift.setPower(-.5);
+            if (gamepad1.y || gamepad1.right_bumper || gamepad2.y || gamepad2.right_bumper){
+                keha.clawLift.setPower(.75);
+            } else if (gamepad1.a || gamepad1.left_bumper || gamepad2.a || gamepad2.left_bumper){
+                keha.clawLift.setPower(-.75);
             }else{
                 keha.clawLift.setPower(0);
             }

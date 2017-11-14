@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
@@ -33,7 +34,7 @@ public class Auto_Mode_AB extends LinearOpMode{
         VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters(cameraMonitorViewId);
 
         //Which Camera on phone to use
-        parameters.cameraDirection = VuforiaLocalizer.CameraDirection.FRONT;
+        //parameters.cameraDirection = VuforiaLocalizer.CameraDirection.FRONT;
 
         //Vuforia License Key
         parameters.vuforiaLicenseKey = "AaIKqd//////AAAAGX1rH3Omc0eYrYaOBLRbihtjvVsoSIYMPJJcDQU5qALMkXIObE8ElwsW2MUCUQjT0WfEkmvoAz+cOKI3bkbxG0PjwBkKMvW9vgJJgELOXJcxGuDPAMQ2uAbzPtDZxzK4+VFE0i7L7DlB7nSVTlGfbnxtnAgyPTLq6sOVw+SWfjgiKzNiwwLKeLGRYDci/QckajIII2St0OQFQaQUAKiXrqbh4IV9FOx59NhH21mlhUfA2zKF1k962unBsPIyO6sjBsL6ric13F5hMkKtoaMc/Q+HDlzID5y36WH9bQbS7o08z6w4aTD9z7OXZxQ5E/8bCaNe0slWhi4/dDBCZNxHWExwmeCYrgSzNpJ6Bww26pCX" ;
@@ -64,10 +65,10 @@ public class Auto_Mode_AB extends LinearOpMode{
         telemetry.update();
 
 
-        keha.mainDrive(-1, 2);
+        //keha.mainDrive(-1, 2);
         //keha.sideToSide(1, .25);
-        sleep(2000);
-        keha.stopMain();
+        //sleep(2000);
+        //keha.stopMain();
         //keha.stopCenter();
         //sleep(1000);
 
@@ -80,11 +81,11 @@ public class Auto_Mode_AB extends LinearOpMode{
 
         timer.reset();
 
-        do {
+        /*do {
             vuMark = RelicRecoveryVuMark.from(cryptoKey);
             telemetry.addData("VuMark", vuMark);
             telemetry.update();
-        }while (vuMark == RelicRecoveryVuMark.UNKNOWN && opModeIsActive() && timer.milliseconds() < 3000);
+        }while (vuMark == RelicRecoveryVuMark.UNKNOWN && opModeIsActive() && timer.milliseconds() < 3000);*/
 
         sleep(1000);
 
@@ -97,11 +98,11 @@ public class Auto_Mode_AB extends LinearOpMode{
 
 
 
-        telemetry.addData("vumark", vuMark);
+        //telemetry.addData("vumark", vuMark);
         telemetry.addLine("step 2 done");
         telemetry.update();
         //3
-        if(vuMark == RelicRecoveryVuMark.RIGHT){
+        /*if(vuMark == RelicRecoveryVuMark.RIGHT){
             //params 1 for left direction, 29 for distance
             keha.mainDrive(1, 34);
             sleep(6000);
@@ -119,17 +120,17 @@ public class Auto_Mode_AB extends LinearOpMode{
             sleep(6000);
             //stop motors
             keha.stopMain();
-        }else {
+        }else {*/
             telemetry.addLine("vuMark Unknown");
             //keha.sideToSide(1, 9);
             keha.mainDrive(1, 31);
             sleep(5000);
             //stop motors
             keha.stopMain();
-            sleep(2000);
+            //sleep(2000);
             //stop motors
             //keha.stopCenter();
-        }
+        //}
         //sleep(1000);
 
         /*keha.sideToSide(-1, 4);
@@ -168,8 +169,10 @@ public class Auto_Mode_AB extends LinearOpMode{
         keha.mainDrive(-1, 2);
         sleep(1000);
         keha.stopMain();
+        sleep(1000);
         //sleep(1000);
-
+        keha.leftDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        keha.rightDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
 
     }

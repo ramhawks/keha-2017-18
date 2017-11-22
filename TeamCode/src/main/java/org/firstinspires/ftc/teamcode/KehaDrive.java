@@ -31,12 +31,17 @@ public class KehaDrive extends LinearOpMode {
         double rightTrigger;
 
         //Claw Servo variables
-        double leftOpen = 0;
-        double rightOpen = 1;
-        double leftClose = .7;
-        double rightClose = .25;
+        keha.rightClaw.scaleRange(.25, 1);
+        keha.leftClaw.scaleRange(0, .7);
+
+        double leftOpen = keha.leftClaw.MIN_POSITION;
+        double rightOpen = keha.rightClaw.MAX_POSITION;
+        double leftClose = keha.leftClaw.MAX_POSITION;
+        double rightClose = keha.rightClaw.MIN_POSITION;
         boolean limitSwitchUp;
         boolean limitSwitchDown;
+        double lastPosL;
+        double lastPosR;
 
 
 
@@ -55,6 +60,8 @@ public class KehaDrive extends LinearOpMode {
 
         while (opModeIsActive()){
 
+            lastPosL = keha.leftClaw.getPosition();
+            lastPosR = keha.rightClaw.getPosition();
 
             limitSwitchDown = keha.limitSwitchDown.isPressed();
             limitSwitchUp = keha.limitSwitchUp.isPressed();
@@ -96,6 +103,13 @@ public class KehaDrive extends LinearOpMode {
             if(gamepad1.b || gamepad2.b){
                 keha.leftClaw.setPosition(leftClose);
                 keha.rightClaw.setPosition(rightClose);
+            }
+
+            //if ((leftOpen < keha.leftClaw.getPosition() && keha.leftClaw.getPosition() < leftClose) && (rightClose < keha.rightClaw.getPosition() && keha.rightClaw.getPosition() < rightOpen));
+
+            if (gamepad2.left_stick_y != 0 || gamepad2.right_stick_y != 0){
+                keha.leftClaw.setPosition(lastPosL + (.05 * -gamepad2.left_stick_y));
+                keha.rightClaw.setPosition(lastPosR - (.05 * -gamepad2.right_stick_y));
             }
 
             //claw lift

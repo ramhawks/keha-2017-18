@@ -115,7 +115,7 @@ public class KehaDrive extends LinearOpMode {
             //claw lift
             if (gamepad1.y || gamepad1.right_bumper || gamepad2.y || gamepad2.right_bumper){
                 keha.clawLift.setPower(.75);
-            } else if (gamepad1.a || gamepad1.left_bumper || gamepad2.a || gamepad2.left_bumper){
+            } else if ((gamepad1.a || gamepad1.left_bumper || gamepad2.a || gamepad2.left_bumper) && !limitSwitchDown){
                 keha.clawLift.setPower(-.75);
             }else{
                 keha.clawLift.setPower(0);

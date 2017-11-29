@@ -25,18 +25,20 @@ public class EncoderTest extends LinearOpMode{
         int leftEnc;
         int rightEnc;
 
-        keha.rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        keha.leftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        keha.centerDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        //keha.leftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        keha.rightDrive.setTargetPosition(-550);
-        keha.leftDrive.setTargetPosition(-550);
+        keha.centerDrive.setTargetPosition(-550);
+        //keha.leftDrive.setTargetPosition(-550);
 
-        keha.rightDrive.setPower(-.25);
-        keha.leftDrive.setPower(-.25);
+        keha.centerDrive.setPower(-.25);
+        //keha.leftDrive.setPower(-.25);
 
+        sleep(4000);
 
-        telemetry.addData("left", keha.leftDrive.getCurrentPosition());
-        telemetry.addData("right", keha.rightDrive.getCurrentPosition());
+        keha.centerDrive.setPower(0);
+        telemetry.addData("centr", keha.centerDrive.getCurrentPosition());
+        //telemetry.addData("right", keha.rightDrive.getCurrentPosition());
         telemetry.update();
         /*keha.leftDrive.setPower(0);
         keha.rightDrive.setPower(0);*/

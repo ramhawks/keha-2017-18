@@ -27,6 +27,7 @@ public class KehaDrive extends LinearOpMode {
         keha.init(hardwareMap);
         waitForStart();
 
+        //Controller variables
         double leftTrigger;
         double rightTrigger;
 
@@ -38,12 +39,13 @@ public class KehaDrive extends LinearOpMode {
         double rightOpen = keha.rightClaw.MAX_POSITION;
         double leftClose = keha.leftClaw.MAX_POSITION;
         double rightClose = keha.rightClaw.MIN_POSITION;
-        boolean limitSwitchUp;
-        boolean limitSwitchDown;
+
         double lastPosL;
         double lastPosR;
 
-
+        //claw lift variables
+        boolean limitSwitchUp;
+        boolean limitSwitchDown;
 
 
 
@@ -60,6 +62,8 @@ public class KehaDrive extends LinearOpMode {
 
         while (opModeIsActive()){
 
+
+            //set variables to input from motors and controller
             lastPosL = keha.leftClaw.getPosition();
             lastPosR = keha.rightClaw.getPosition();
 
@@ -84,6 +88,8 @@ public class KehaDrive extends LinearOpMode {
             }*/
             //sleep(2000);
 
+
+            /*Center Drive*/
             if (leftTrigger != 0 && rightTrigger != 0){
                 keha.centerDrive.setPower(0);
                 bothNotZero = 1;

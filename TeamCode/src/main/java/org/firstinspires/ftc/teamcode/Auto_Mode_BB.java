@@ -11,17 +11,22 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 
 /**
- * Created by Team3090 on 11/8/2017.
- */
-@Autonomous(name = "Auto_Mode_BB", group = "Autonomous")
+ * Created by Team3090 on 11/2/2017.
+ *
+ *
+ * Autonomous mode Audience Red
+ * */
+@Autonomous(name = "BB", group = "Autonomous")
 public class Auto_Mode_BB extends LinearOpMode{
+    //AutoFunctions auto = new AutoFunctions();
     Robot keha = new Robot();
-    VuforiaLocalizer vuforia;
     ElapsedTime timer = new ElapsedTime();
-
+    VuforiaLocalizer vuforia;
     @Override
     public void runOpMode(){
         keha.init(hardwareMap);
+
+        //boolean openTrue = false;
 
         /*Vuforia Setup/Init*/
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
@@ -45,106 +50,136 @@ public class Auto_Mode_BB extends LinearOpMode{
         waitForStart();
         relicTrackables.activate();
 
+
+        //Steps of auto mode
+
         //1
         keha.claw(false);
         sleep(1000);
         keha.clawUp();
-        sleep(1000);
+        sleep(2000);
         keha.clawStop();
         //sleep(1000);
         telemetry.addLine("Step 1 done");
         telemetry.update();
 
 
-        //keha.mainDrive(-1, 2);
-        //keha.sideToSide(1, .25);
-        //sleep(2000);
-        //keha.stopMain();
-        //keha.stopCenter();
+        keha.mainDrive(1, 24);
+        sleep(4000);
+        keha.stopMain();
+
+
+
+
         //sleep(1000);
 
-        timer.reset();
 
         //2
         RelicRecoveryVuMark vuMark;
 
-        /*do {
+        timer.reset();
+
+        do {
             vuMark = RelicRecoveryVuMark.from(cryptoKey);
             telemetry.addData("VuMark", vuMark);
             telemetry.update();
-        }while (vuMark == RelicRecoveryVuMark.UNKNOWN && opModeIsActive() && timer.milliseconds() < 3000);*/
+        }while (vuMark == RelicRecoveryVuMark.UNKNOWN && opModeIsActive() && timer.milliseconds() < 3000);
 
-        //sleep(1000);
-        //telemetry.addData("vumark", vuMark);
-        telemetry.addLine("step 2 done");
-        telemetry.update();
+        sleep(1000);
 
-        //3
+        keha.turn90(-1);
+        sleep(2000);
+        keha.stopMain();
 
-
-        keha.mainDrive(1, 20);
+        keha.mainDrive(1, 36);
         sleep(3000);
         keha.stopMain();
 
-        //4
+        keha.turn90(-1);
+        sleep(2000);
+        keha.stopMain();
+
+
+
+
+
+        /*keha.mainDrive(-1, 30);
+        sleep(2000);
+        keha.stopMain();*/
+
+
+
+        telemetry.addData("vumark", vuMark);
+        telemetry.addLine("step 2 done");
+        telemetry.update();
+        //3
+        if(vuMark == RelicRecoveryVuMark.RIGHT){
+
+            keha.mainDrive(1, 6); //change 2nd number for distance
+            sleep(6000);
+            keha.stopMain();
+
+        }else if (vuMark == RelicRecoveryVuMark.CENTER){
+
+            keha.mainDrive(1, 12);
+            sleep(6000);
+            keha.stopMain();
+
+        }else if (vuMark == RelicRecoveryVuMark.LEFT){
+
+            keha.mainDrive(1, 24);
+            sleep(6000);
+            keha.stopMain();
+
+        }else {
+            telemetry.addLine("vuMark Unknown");
+
+            keha.mainDrive(1, 12);
+            sleep(5000);
+            keha.stopMain();
+
+        }
+        //sleep(1000);
+
+        /*keha.sideToSide(-1, 4);
+        sleep(1000);
+        keha.stopCenter();*/
+
+
+
         keha.turn90(1);
+        sleep(2000);
+        keha.stopMain();
+
+        /*keha.mainDrive(1,5);
+        sleep(2000);
+        keha.stopMain();
+
+        keha.turn90(2);
         sleep(3000);
+        keha.stopMain();*/
+
+        //4
+        //params 1 for forward, 5 for distance
+        keha.mainDrive(1, 5);
+        sleep(2000);
         keha.stopMain();
         //sleep(1000);
 
         //5
-        /*if(vuMark == RelicRecoveryVuMark.RIGHT){
-            //params 1 for left direction, 3.75 for distance
-            keha.mainDrive(1, 3);
-            sleep(6000);
-            //stop motors
-            keha.stopMain();
-        }else if (vuMark == RelicRecoveryVuMark.CENTER){
-            //params 1 for left direction, 12 for distance
-            keha.mainDrive(1, 11);
-            sleep(6000);
-            //stop motors
-            keha.stopMain();
-        }else if (vuMark == RelicRecoveryVuMark.LEFT){
-            //params 1 for left direction, 19 for distance
-            keha.mainDrive(1, 18);
-            sleep(6000);
-            //stop motors
-            keha.stopCenter();
-        }else {*/
-        telemetry.addLine("vuMark Unknown");
-        keha.mainDrive(1, 6);
-        sleep(4000);
-        //stop motors
-        keha.stopMain();
-        //}
-        //sleep(1000);
-
-        keha.turn90(1);
-        sleep(2000);
-        keha.stopMain();
-        //6
-        keha.mainDrive(1, 6);
-        sleep(3000);
-        keha.stopMain();
-        //sleep(1000);
-
-        keha.turn90(-2);
-        sleep(4000);
-        keha.stopMain();
-
-        keha.mainDrive(1, 6);
-        sleep(3000);
-        keha.stopMain();
-        //7
-        // true for open
+        //true for open
         keha.claw(true);
         sleep(1000);
 
-        //8
+        //6
+        //params -1 for backward, 5 for distance
         keha.mainDrive(-1, 2);
-        sleep(2000);
+        sleep(1000);
         keha.stopMain();
         //sleep(1000);
+
+
+
     }
 }
+

@@ -49,7 +49,6 @@ public class EncoderTest extends LinearOpMode{
 
 
 
-
         //while (opModeIsActive()){
 
             /*leftEnc = keha.leftDrive.getCurrentPosition();

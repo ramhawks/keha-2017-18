@@ -92,6 +92,8 @@ public class Robot
         sleep(50);
     }
 
+
+
     //direction must be set to 1 if left, -1 if right
     public void sideToSide(int direction, double distance){
 
@@ -114,8 +116,8 @@ public class Robot
         rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         leftDrive.setTargetPosition(position);
         rightDrive.setTargetPosition(position);
-        leftDrive.setPower(.25 * -direction);
-        rightDrive.setPower(.25 * -direction);
+        leftDrive.setPower(.5 * -direction);
+        rightDrive.setPower(.5 * -direction);
     }
 
     public void stopMain(){

@@ -71,7 +71,7 @@ public class Auto_Mode_BR extends LinearOpMode{
 
 
 
-        //sleep(1000);
+        //sleep(1000 );
 
 
         //2
@@ -91,8 +91,8 @@ public class Auto_Mode_BR extends LinearOpMode{
         sleep(2000);
         keha.stopMain();
 
-        keha.mainDrive(1, 36);
-        sleep(3000);
+        keha.mainDrive(1, 23);
+        sleep(2000);
         keha.stopMain();
 
         keha.turn90(1);
@@ -116,13 +116,13 @@ public class Auto_Mode_BR extends LinearOpMode{
         if(vuMark == RelicRecoveryVuMark.RIGHT){
 
             keha.mainDrive(1, 24); //change 2nd number for distance
-            sleep(6000);
+            sleep(4000);
             keha.stopMain();
 
         }else if (vuMark == RelicRecoveryVuMark.CENTER){
 
-            keha.mainDrive(1, 12);
-            sleep(6000);
+            keha.mainDrive(1, 10);
+            sleep(3000);
             keha.stopMain();
 
         }else if (vuMark == RelicRecoveryVuMark.LEFT){
@@ -134,8 +134,8 @@ public class Auto_Mode_BR extends LinearOpMode{
         }else {
             telemetry.addLine("vuMark Unknown");
 
-            keha.mainDrive(1, 12);
-            sleep(5000);
+            keha.mainDrive(1, 10);
+            sleep(3000);
             keha.stopMain();
 
         }
@@ -161,7 +161,7 @@ public class Auto_Mode_BR extends LinearOpMode{
 
         //4
         //params 1 for forward, 5 for distance
-        keha.mainDrive(1, 5);
+        keha.mainDrive(1, 4);
         sleep(2000);
         keha.stopMain();
         //sleep(1000);

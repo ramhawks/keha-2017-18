@@ -57,7 +57,7 @@ public class Auto_Mode_AB extends LinearOpMode{
         keha.claw(false);
         sleep(1000);
         keha.clawUp();
-        sleep(2000);
+        sleep(1500);
         keha.clawStop();
         //sleep(1000);
         telemetry.addLine("Step 1 done");
@@ -65,7 +65,7 @@ public class Auto_Mode_AB extends LinearOpMode{
 
 
         keha.mainDrive(1, 24);
-        sleep(4000);
+        sleep(3000);
         keha.stopMain();
 
 
@@ -91,7 +91,7 @@ public class Auto_Mode_AB extends LinearOpMode{
 
 
         keha.turn90(-1);
-        sleep(2000);
+        sleep(3000);
         keha.stopMain();
 
         /*keha.mainDrive(-1, 30);
@@ -106,27 +106,27 @@ public class Auto_Mode_AB extends LinearOpMode{
         //3
         if(vuMark == RelicRecoveryVuMark.RIGHT){
 
-            keha.mainDrive(1, 36);
-            sleep(6000);
+            keha.mainDrive(1, 26);
+            sleep(3500);
             keha.stopMain();
 
         }else if (vuMark == RelicRecoveryVuMark.CENTER){
 
-            keha.mainDrive(1, 30);
-            sleep(6000);
+            keha.mainDrive(1, 35);
+            sleep(4000);
             keha.stopMain();
 
         }else if (vuMark == RelicRecoveryVuMark.LEFT){
 
-            keha.mainDrive(1, 24);
-            sleep(6000);
+            keha.mainDrive(1, 42);
+            sleep(4000);
             keha.stopMain();
 
         }else {
             telemetry.addLine("vuMark Unknown");
 
-            keha.mainDrive(1, 30);
-            sleep(5000);
+            keha.mainDrive(1, 35);
+            sleep(4000);
             keha.stopMain();
 
         }
@@ -139,11 +139,11 @@ public class Auto_Mode_AB extends LinearOpMode{
 
 
         keha.turn90(-1);
-        sleep(2000);
+        sleep(3000);
         keha.stopMain();
 
-        keha.mainDrive(1, 36);
-        sleep(4000);
+        keha.mainDrive(1, 25.5);
+        sleep(3000);
         keha.stopMain();
 
 
@@ -156,12 +156,12 @@ public class Auto_Mode_AB extends LinearOpMode{
         //5
         //true for open
         keha.claw(true);
-        sleep(1000);
+        sleep(1500);
 
         //6
         //params -1 for backward, 5 for distance
-        keha.mainDrive(-1, 2);
-        sleep(1000);
+        keha.mainDrive(-1, 3);
+        sleep(1500);
         keha.stopMain();
         //sleep(1000);
 

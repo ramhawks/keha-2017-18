@@ -115,7 +115,7 @@ public class Auto_Mode_BB extends LinearOpMode{
         //3
         if(vuMark == RelicRecoveryVuMark.RIGHT){
 
-            keha.mainDrive(1, 24); //change 2nd number for distance
+            keha.mainDrive(1, 6); //change 2nd number for distance
             sleep(4000);
             keha.stopMain();
 
@@ -127,7 +127,7 @@ public class Auto_Mode_BB extends LinearOpMode{
 
         }else if (vuMark == RelicRecoveryVuMark.LEFT){
 
-            keha.mainDrive(1, 6);
+            keha.mainDrive(1, 24);
             sleep(6000);
             keha.stopMain();
 

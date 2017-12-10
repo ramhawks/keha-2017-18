@@ -106,7 +106,7 @@ public class Auto_Mode_AB extends LinearOpMode{
         //3
         if(vuMark == RelicRecoveryVuMark.RIGHT){
 
-            keha.mainDrive(1, 26);
+            keha.mainDrive(1, 42);
             sleep(3500);
             keha.stopMain();
 
@@ -118,7 +118,7 @@ public class Auto_Mode_AB extends LinearOpMode{
 
         }else if (vuMark == RelicRecoveryVuMark.LEFT){
 
-            keha.mainDrive(1, 42);
+            keha.mainDrive(1, 26);
             sleep(4000);
             keha.stopMain();
 

@@ -64,7 +64,7 @@ public class Auto_Mode_AR extends LinearOpMode{
         telemetry.update();
 
 
-        keha.mainDrive(1, 24);
+        keha.mainDrive(1, 25);
         sleep(3000);
         keha.stopMain();
 
@@ -148,7 +148,7 @@ public class Auto_Mode_AR extends LinearOpMode{
         sleep(3000);
         keha.stopMain();
 
-        keha.mainDrive(1, 25.5);
+        keha.mainDrive(1, 26.5);
         sleep(3000);
         keha.stopMain();
 

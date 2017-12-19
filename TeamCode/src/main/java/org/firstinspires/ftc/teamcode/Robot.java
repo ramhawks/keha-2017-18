@@ -85,8 +85,8 @@ public class Robot
         // Define and initialize ALL installed servos.
         leftClaw  = hwMap.get(Servo.class, "leftClaw");
         rightClaw = hwMap.get(Servo.class, "rightClaw");
-        leftClaw.setPosition(Servo.MIN_POSITION);
-        rightClaw.setPosition(Servo.MAX_POSITION);
+       // leftClaw.setPosition(Servo.MIN_POSITION);
+        //rightClaw.setPosition(Servo.MAX_POSITION);
 
 
         sleep(50);

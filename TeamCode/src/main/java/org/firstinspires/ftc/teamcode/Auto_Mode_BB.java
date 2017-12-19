@@ -64,7 +64,7 @@ public class Auto_Mode_BB extends LinearOpMode{
         telemetry.update();
 
 
-        keha.mainDrive(1, 24);
+        keha.mainDrive(1, 25);
         sleep(4000);
         keha.stopMain();
 
